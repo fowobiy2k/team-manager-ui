@@ -1,30 +1,32 @@
-// import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import axios from 'axios';
+import axios from 'axios';
 import './App.css';
 
 function App() {
-  // const [fixtures, setFixtures] = useState([]);
-  // // const [message, setMessage] = useState([]);
+  const [fixtures, setFixtures] = useState([]);
+  const [loadin, setLoadin]= useState(false);
+  // const [message, setMessage] = useState([]);
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   const getResources = async () => {
+    const getResources = async () => {
+      setLoadin(true)
+      axios.get('https://jsonplaceholder.typicode.com/posts').then(
+        res => {
+          const response = res.data;
+          setFixtures(response);
+          setLoadin(false)
+          console.log('Data: ', response)
 
-  //     axios.get('/allmatches').then(
-  //       res => {
-  //         const response = res.data;
-  //         setFixtures(response);
-  //         console.log('Data: ', response)
+        }
+      )
 
-  //       }
-  //     )
+    }
 
-  //   }
+    getResources()
 
-  //   getResources()
-
-  // }, [])
+  }, [])
 
   // Fetch Fixtures
   // const fetchFixtures = async () => {
@@ -46,6 +48,14 @@ function App() {
       {/* {fixtures.length > 0 && fixtures.map(fixture => {
         return <p key={fixture.id}>{fixture.date}</p >
       })} */}
+      {
+        loadin ? <p>Loadin...</p> : 
+        (
+          fixtures.length > 0 ?
+           fixtures.map(fixture => <p key={Math.random() * Date.now()} >{fixture?.title}</p>) :
+           <p>No Items</p>
+        )
+      }
     </div>
 
   );
