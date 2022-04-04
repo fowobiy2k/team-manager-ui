@@ -5,14 +5,14 @@ import './App.css';
 
 function App() {
   // const [fixtures, setFixtures] = useState([]);
-  const [loadin, setLoadin] = useState(false);
+  // const [loadin, setLoadin] = useState(false);
   const [message, setMessage] = useState([]);
 
   useEffect(() => {
 
     const getResources = async () => {
 
-      setLoadin(true)
+      // setLoadin(true)
 
       const res = await fetch('/welcome')
       const data = await res.text()
