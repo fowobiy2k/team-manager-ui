@@ -14,7 +14,7 @@ function App() {
 
       // setLoadin(true)
 
-      const res = await fetch('/welcome')
+      const res = await fetch('http://18.219.69.33:8097/pfa/welcome')
       const data = await res.text()
       setMessage(data)
       console.log(data)
