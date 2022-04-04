@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import axios from 'axios';
 import './App.css';
 
 function App() {
@@ -10,7 +11,14 @@ function App() {
 
     const getResources = async () => {
 
-      await fetchFixtures();
+      axios.get('/allmatches').then(
+        res => {
+          const response = res.data;
+          setFixtures(response);
+          console.log('Data: ', response)
+
+        }
+      )
 
     }
 
@@ -19,16 +27,16 @@ function App() {
   }, [])
 
   // Fetch Fixtures
-  const fetchFixtures = async () => {
+  // const fetchFixtures = async () => {
 
 
-    const res = await fetch('/allmatches')
-    const data = await res.json()
-    console.log(data)
-    setFixtures(data)
+  //   const res = await fetch('/allmatches')
+  //   const data = await res.json()
+  //   console.log(data)
+  //   setFixtures(data)
 
-    return data
-  }
+  //   return data
+  // }
 
   return (
 
