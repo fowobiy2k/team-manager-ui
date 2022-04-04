@@ -43,7 +43,7 @@ function App() {
     <div>
       <h1>Welcome</h1>
 
-      {fixtures && fixtures.map(fixture => {
+      {fixtures.length > 0 && fixtures.map(fixture => {
         return <p key={fixture.id}>{fixture.date}</p >
       })}
     </div>
